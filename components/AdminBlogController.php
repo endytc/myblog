@@ -7,7 +7,7 @@
 
 /**
  * Description of AdminController
- *
+ * tes
  * @author fendi
  */
 class AdminBlogController extends BackendController{
