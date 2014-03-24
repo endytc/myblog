@@ -38,7 +38,8 @@ $this->menu=array(
 </div>
 </div>
 
-<?php $this->widget('MyCGridView', array(
+<?php
+$this->widget('MyCGridView', array(
 	'id'=>'cms-artikel-grid',
 	'dataProvider'=>$model->search(),
 	//'filter'=>$model,
@@ -48,16 +49,35 @@ $this->menu=array(
                     'value' => '$row+1',
                     'htmlOptions'=>array('align'=>'center','style'=>'width: 5%')
                 ),
-		'isi',
-		'id_admin',
-		'waktu',
-		'slug',
+        array(
+                    'header' => 'Icon',
+                    'value' => 'Chtml::image($data->getIconUrl(true))',
+                    'type'=>'html',
+                    'htmlOptions'=>array('align'=>'center','style'=>'width: 5%')
+                ),
 		'judul',
+        'slug',
+         array(
+                    'header' => 'Kategori',
+                    'value' => '$data->getKategoriStr()',
+                    'htmlOptions'=>array('align'=>'center','style'=>'width: 5%')
+                ),   
+//        array(
+//            'header'=>'Admin',
+//            'value'=>'($data->idAdmin instanceof Admin)?$data->idAdmin->nama:""'
+//            ),
+        array(
+            'header'=>'Komentar',
+            'value'=>'($data->is_komentar)?"Enable":"Disable"'
+            ),
+        'status',    
+        'waktu',
 		array(
                     'class'=>'MyCButtonColumn',
                     'buttons'=>array(
                         'view'=>array(
-                            'options'=>array('target'=>'_blank','title'=>'View')
+                            'options'=>array('target'=>'_blank','title'=>'View'),
+                            'url'=>'Yii::app()->urlManager->createUrl("blog/default/article",array("slug"=>$data->slug))'
                         ),
                         'update'=>array(
                             'options'=>array('title'=>'Edit')

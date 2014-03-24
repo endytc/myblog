@@ -7,14 +7,16 @@
 <?php $form=$this->beginWidget('MyCActiveForm', array(
 	'id'=>'cms-artikel-form',
 	'enableAjaxValidation'=>false,
-        'htmlOptions'=>array('class'=>'form-horizontal stdform')
+        'htmlOptions'=>array('class'=>'form-horizontal stdform',
+            "enctype"=>"multipart/form-data"
+        )
 )); 
 /* @var $form CActiveForm */
 ?>
 
 <div class="modal-header">
-    <a class="close" data-dismiss="modal">&times;</a>
-    <h3><?php echo $model->isNewRecord ? 'Tambah' : 'Edit'?> CmsArtikel </h3>
+    
+    <h3><?php echo $model->isNewRecord ? 'Tambah' : 'Edit'?> Artikel </h3>
 </div>
 <?php echo $form->errorSummary($model); ?>
 <div class="clear">&nbsp;</div>
@@ -29,10 +31,18 @@
         </div>
         <div class="clear">&nbsp;</div>
         <div style="width: 100%">
-            <?php echo $form->labelEx($model,'slug',array('class'=>'control-label','style'=>"width: 10%")); ?>
+            <?php echo $form->labelEx($model,'deskripsi_singkat',array('class'=>'control-label','style'=>"width: 10%")); ?>
             <span class="field">
-            <?php echo $form->textField($model,'slug',array('size'=>60,'maxlength'=>100,'class'=>'span8')); ?>
-            <?php echo $form->error($model,'slug'); ?>
+            <?php echo $form->textArea($model,'deskripsi_singkat',array('rows'=>4,'cols'=>100,'maxlength'=>100,'class'=>'span8')); ?>
+            <?php echo $form->error($model,'deskripsi_singkat'); ?>
+            </span>
+        </div>
+        <div class="clear">&nbsp;</div>
+        <div style="width: 100%">
+            <?php echo $form->labelEx($model,'gambar_icon',array('class'=>'control-label','style'=>"width: 10%")); ?>
+            <span class="field">
+            <?php echo $form->fileField($model,'gambar_icon'); ?>
+            <?php echo $form->error($model,'gambar_icon'); ?>
             </span>
         </div>
         <div class="clear">&nbsp;</div>
@@ -50,25 +60,37 @@
         </div>
     </div>
     <div class="span3">
+        <?php echo $form->labelEx($model,'status',array('class'=>'control-label','style'=>"width: 10%")); ?>
         <?php echo $form->dropDownList($model, 'status', array('Draft'=>'Draft','Post'=>'Post'),array('class'=>'span5'))?>
         <div class="break"></div>
         Kategori
-        <p>
-            <!--<span class="formwrapper">-->
+        <div class="break"></div>
         <?php 
-        echo $form->checkBoxList($model, 'cmsKategoris', $kategoriList,
-                array(
-                    'template'=>'<div class="checker">
-                            <span>{input}</span>
-                            </div>
-                             {label}
-                        <br/>',
-                    ));
+        $kategoriArtikelList=$model->getKategoriList();
+
+        foreach($kategoriList as $key=>$kategori){
+            $checked=(isset($kategoriArtikelList[$key]))?'checked':'';
+            //echo "<input type='checkbox' name='CmsArtikel[cmsKategoris][]' value='$key'> $kategori";
+            echo '<div class="input-prepend span8">
+                    <label class="checkbox" for="" style="text-align:left">
+                        <input type="checkbox" name="CmsArtikel[cmsKategoris][]" value="'.$key.'" '.$checked.'>'.
+                        $kategori.'
+                    </label>
+                </div>';
+                echo '<div class="break"></div>';
+        }
         ?>
         <?php echo $form->error($model,'cmsKategoris'); ?>    
-        <!--</span>-->    
-        </p>    
+        <!--</p>-->    
         
+        <div class="break"></div>    
+        <br><br><br>
+        <hr>
+        <div class="input-prepend span8">
+            <label class="checkbox" for="" style="text-align:left">
+                <?php echo $form->checkBox($model,'is_komentar').' Bisa dikomentari'?>
+            </label>
+        </div>
     </div>
 </div>
 <div class="modal-footer">
@@ -86,3 +108,8 @@
             )); ?></div>    
 
 <?php $this->endWidget(); ?>
+<script type="text/css">
+    .checker label{
+        display: inline
+     }
+</script>

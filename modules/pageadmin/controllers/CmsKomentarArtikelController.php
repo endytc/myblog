@@ -1,13 +1,7 @@
 <?php
 
-class CmsArtikelController extends AdminBlogController
+class CmsKomentarArtikelController extends MyAdminController
 {
-	/**
-	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
-	 * using two-column layout. See 'protected/views/layouts/column2.php'.
-	 */
-	public $layout='//layouts/column2';
-
 	/**
 	 * @return array action filters
 	 */
@@ -51,7 +45,7 @@ class CmsArtikelController extends AdminBlogController
 	 */
 	public function actionView($id)
 	{
-                $model=new CmsArtikel('search');
+                $model=new CmsKomentarArtikel('search');
 		$model->unsetAttributes();  // clear any default values
                 if($_GET['ajax'])
                     $this->renderModal('view',array(
@@ -70,34 +64,33 @@ class CmsArtikelController extends AdminBlogController
 	 */
 	public function actionCreate()
 	{
-		$model=new CmsArtikel;
+		$model=new CmsKomentarArtikel;
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
-                
-		if(isset($_POST['CmsArtikel']))
+
+		if(isset($_POST['CmsKomentarArtikel']))
 		{
-			$model->attributes=$_POST['CmsArtikel'];
+			$model->attributes=$_POST['CmsKomentarArtikel'];
                         $is_success=$model->save();
-                        $this->notice($is_success,'Cms Artikel','create');
+                        $this->notice($is_success,'Cms Komentar Artikel','create');
 			if($is_success){
-				$this->redirect(array('update','id'=>$model->id));
+				$this->redirect(array('view','id'=>$model->id));
                         }else{
                             $this->render('create',array(
-                                    'model'=>$model,'kategoriList'=>  CmsKategori::model()->dropdownModel(false)
+                                    'model'=>$model
                             ));
                         }
 		}else{
                     if($_GET['ajax'])
                         $this->renderModal('create',array(
-                                'model'=>$model,'kategoriList'=>  CmsKategori::model()->dropdownModel(false)
+                                'model'=>$model,
                         ));
                     else
                         $this->render('create',array(
-                                'model'=>$model,'kategoriList'=>  CmsKategori::model()->dropdownModel(false)
+                                'model'=>$model,
                         ));
                 }
-               
 	}
 
 	/**
@@ -112,22 +105,21 @@ class CmsArtikelController extends AdminBlogController
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['CmsArtikel']))
+		if(isset($_POST['CmsKomentarArtikel']))
 		{
-			$model->attributes=$_POST['CmsArtikel'];
+			$model->attributes=$_POST['CmsKomentarArtikel'];
                         $is_success=$model->save();
-                        $this->notice($is_success,'Cms Artikel','update');
-//			if($is_success)
-//                            $this->redirect(array('view','id'=>$model->id,'kategoriList'=>  CmsKategori::model()->dropdownModel(false)));
+                        $this->notice($is_success,'Cms Komentar Artikel','update');
+			if($is_success)
+				$this->redirect(array('view','id'=>$model->id));
 		}
-                
                 if($_GET['ajax'])
                     $this->renderModal('update',array(
-                            'model'=>$model,'kategoriList'=>  CmsKategori::model()->dropdownModel(false)
+                            'model'=>$model,
                     ));
                 else{
                     $this->render('update',array(
-                                    'model'=>$model,'kategoriList'=>  CmsKategori::model()->dropdownModel(false)
+                                    'model'=>$model
                             ));
                 }
 		
@@ -141,10 +133,9 @@ class CmsArtikelController extends AdminBlogController
 	public function actionDelete($id)
 	{
                 $is_success=$this->loadModel($id)->delete();
-                $this->notice($is_success,'Cms Artikel','delete');
+                $this->notice($is_success,'Cms Komentar Artikel','delete');
 		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
-		if(!isset($_GET['ajax']))
-			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
+                		$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : Yii::app()->createUrl('blog/cmsKomentarArtikel'));
 	}
 
 	/**
@@ -152,7 +143,7 @@ class CmsArtikelController extends AdminBlogController
 	 */
 	public function actionIndex()
 	{
-		//$dataProvider=new CActiveDataProvider('CmsArtikel');
+		//$dataProvider=new CActiveDataProvider('CmsKomentarArtikel');
 		//$this->render('index',array(
 		//	'dataProvider'=>$dataProvider,
 		//));
@@ -164,13 +155,11 @@ class CmsArtikelController extends AdminBlogController
 	 */
 	public function actionAdmin()
 	{
-		$model=new CmsArtikel('search');
+		$model=new CmsKomentarArtikel('search');
 		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['CmsArtikel'])){
-                    $model->attributes=$_GET['CmsArtikel'];
-                    if(isset($_GET['CmsArtikel']['cmsKategoris']) && $_GET['CmsArtikel']['cmsKategoris']!='')
-                        $model->cmsKategoris=array(CmsKategori::model()->findByPk($_GET['CmsArtikel']['cmsKategoris']));
-                }
+		if(isset($_GET['CmsKomentarArtikel']))
+			$model->attributes=$_GET['CmsKomentarArtikel'];
+
 		$this->render('admin',array(
 			'model'=>$model,
 		));
@@ -183,7 +172,7 @@ class CmsArtikelController extends AdminBlogController
 	 */
 	public function loadModel($id)
 	{
-		$model=CmsArtikel::model()->findByPk($id);
+		$model=CmsKomentarArtikel::model()->findByPk($id);
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;
@@ -195,11 +184,10 @@ class CmsArtikelController extends AdminBlogController
 	 */
 	protected function performAjaxValidation($model)
 	{
-		if(isset($_POST['ajax']) && $_POST['ajax']==='cms-artikel-form')
+		if(isset($_POST['ajax']) && $_POST['ajax']==='cms-komentar-artikel-form')
 		{
 			echo CActiveForm::validate($model);
 			Yii::app()->end();
 		}
 	}
-        
 }

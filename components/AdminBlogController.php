@@ -10,7 +10,7 @@
  * tes
  * @author fendi
  */
-class AdminBlogController extends BackendController{
+class AdminBlogController extends MyAdminController{
     function getModuleUrl(){
         return $this->module->getParentModule()->getId().'/'.$this->getModule()->getName();
     }

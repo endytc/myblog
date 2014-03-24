@@ -1,19 +1,7 @@
 <!-- Page Title -->
-<div class="page-title">
-    <div class="container">
-        <div class="row">
-            <div class="span12">
-                <i class="icon-tasks page-title-icon"></i>
-                <h2>Services /</h2>
-                <p>Here are the services we offer</p>
-            </div>
-        </div>
-    </div>
-</div>
-
 <div class="services-full-width container">
     <article class="blog-article">
-        <div class="row">
+        <div class="service row">
             <?php
             foreach ($artikelList as $artikel) {
                 $artikelShow=  explode('<!--more-->', $artikel['isi']);
@@ -34,7 +22,7 @@
 //                    Helper::show_array($artikelShow);
                         echo $artikelShow[0]?>
                     </p>
-                    <a href="<?php echo Yii::app()->createUrl('blog/default/article',array('slug'=>$artikel['slug']))?>">Contunie &rarr;</a>
+                    <a href="<?php echo Yii::app()->createUrl('blog/default/article',array('slug'=>$artikel['slug']))?>">Continue &rarr;</a>
                 </div>
             </div><!--end blog-content--><?php
             }
