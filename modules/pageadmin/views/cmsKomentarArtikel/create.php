@@ -3,7 +3,7 @@
 /* @var $model CmsKomentarArtikel */
 
 $this->breadcrumbs=array(
-	'Cms Komentar Artikels'=>array('index'),
+	'Komentar Artikels'=>array('index'),
 	'Create',
 );
 

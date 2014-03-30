@@ -3,7 +3,7 @@
 /* @var $model CmsKomentarArtikel */
 
 $this->breadcrumbs=array(
-	'Cms Komentar Artikel'=>array('index'),
+	'Komentar Artikel'=>array('index'),
 	'Manage',
 );
 
@@ -14,7 +14,7 @@ $this->menu=array(
 
 ?>
 
-<h3>Manage Cms Komentar Artikel</h3>
+<h3>Manage Komentar Artikel</h3>
 <hr>
 <div class="row-fluid">
 <div class="span5" style="text-align: left">
@@ -23,7 +23,7 @@ $this->menu=array(
         <?php
         /*$this->widget('bootstrap.widgets.TbButton',array(
                 'icon'=>'plus white',
-                'label'=>'Tambah Cms Komentar Artikel',
+                'label'=>'Tambah Komentar Artikel',
                 'url'=>Yii::app()->createUrl('blog/cmsKomentarArtikel/create'),
                 'type'=>'primary',
                 'htmlOptions'=>array('target' => 'ajax-modal')

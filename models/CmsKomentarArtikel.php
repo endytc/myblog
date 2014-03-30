@@ -87,7 +87,7 @@ class CmsKomentarArtikel extends MyCActiveRecord
             $results=Yii::app()->db->createCommand()->select()
                     ->from($this->tableName())
                     ->queryAll();
-            $data=array(''=>'- Pilih Cms Komentar Artikel -');
+            $data=array(''=>'- Pilih Komentar Artikel -');
             foreach($results as $result){
                 $data[$result['id']]=$result['nama'];
             }

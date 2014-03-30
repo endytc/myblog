@@ -3,7 +3,7 @@
 /* @var $model CmsArtikel */
 
 $this->breadcrumbs=array(
-	'Cms Artikel'=>array('index'),
+	'Artikel'=>array('index'),
 	'Manage',
 );
 
@@ -14,7 +14,7 @@ $this->menu=array(
 
 ?>
 
-<h3>Manage Cms Artikel</h3>
+<h3>Manage Artikel</h3>
 <hr>
 <div class="row-fluid">
 <div class="span5" style="text-align: left">
@@ -22,7 +22,7 @@ $this->menu=array(
         
         <?php $this->widget('bootstrap.widgets.TbButton',array(
                 'icon'=>'plus white',
-                'label'=>'Tambah Cms Artikel',
+                'label'=>'Tambah Artikel',
                 'url'=>Yii::app()->createUrl($this->getModuleUrl().'/cmsArtikel/create'),
                 'type'=>'primary',
                 

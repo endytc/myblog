@@ -95,7 +95,7 @@ class CmsArtikel extends MyCActiveRecord
             $results=Yii::app()->db->createCommand()->select()
                     ->from($this->tableName())
                     ->queryAll();
-            $data=array(''=>'- Pilih Cms Artikel -');
+            $data=array(''=>'- Pilih Artikel -');
             foreach($results as $result){
                 $data[$result['id']]=$result['nama'];
             }

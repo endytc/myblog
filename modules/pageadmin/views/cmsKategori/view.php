@@ -3,7 +3,7 @@
 /* @var $viewModel CmsKategori */
 
 $this->breadcrumbs=array(
-	'Cms Kategoris'=>array('index'),
+	'Kategoris'=>array('index'),
 	$viewModel->id,
 );
 
@@ -16,7 +16,7 @@ $this->menu=array(
 );
 ?>
 
-<h3>View Cms Kategori</h3>
+<h3>View Kategori</h3>
 
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$viewModel,

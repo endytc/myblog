@@ -73,7 +73,7 @@ class CmsKomentarArtikelController extends MyAdminController
 		{
 			$model->attributes=$_POST['CmsKomentarArtikel'];
                         $is_success=$model->save();
-                        $this->notice($is_success,'Cms Komentar Artikel','create');
+                        $this->notice($is_success,'Komentar Artikel','create');
 			if($is_success){
 				$this->redirect(array('view','id'=>$model->id));
                         }else{
@@ -109,7 +109,7 @@ class CmsKomentarArtikelController extends MyAdminController
 		{
 			$model->attributes=$_POST['CmsKomentarArtikel'];
                         $is_success=$model->save();
-                        $this->notice($is_success,'Cms Komentar Artikel','update');
+                        $this->notice($is_success,'Komentar Artikel','update');
 			if($is_success)
 				$this->redirect(array('view','id'=>$model->id));
 		}
@@ -133,7 +133,7 @@ class CmsKomentarArtikelController extends MyAdminController
 	public function actionDelete($id)
 	{
                 $is_success=$this->loadModel($id)->delete();
-                $this->notice($is_success,'Cms Komentar Artikel','delete');
+                $this->notice($is_success,'Komentar Artikel','delete');
 		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
                 		$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : Yii::app()->createUrl('blog/cmsKomentarArtikel'));
 	}

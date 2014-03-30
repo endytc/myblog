@@ -79,7 +79,7 @@ class CmsArtikelController extends AdminBlogController
 		{
 			$model->attributes=$_POST['CmsArtikel'];
                         $is_success=$model->save();
-                        $this->notice($is_success,'Cms Artikel','create');
+                        $this->notice($is_success,'Artikel','create');
 			if($is_success){
 				$this->redirect(array('update','id'=>$model->id));
                         }else{
@@ -116,7 +116,7 @@ class CmsArtikelController extends AdminBlogController
 		{
 			$model->attributes=$_POST['CmsArtikel'];
                         $is_success=$model->save();
-                        $this->notice($is_success,'Cms Artikel','update');
+                        $this->notice($is_success,'Artikel','update');
 //			if($is_success)
 //                            $this->redirect(array('view','id'=>$model->id,'kategoriList'=>  CmsKategori::model()->dropdownModel(false)));
 		}
@@ -141,7 +141,7 @@ class CmsArtikelController extends AdminBlogController
 	public function actionDelete($id)
 	{
                 $is_success=$this->loadModel($id)->delete();
-                $this->notice($is_success,'Cms Artikel','delete');
+                $this->notice($is_success,'Artikel','delete');
 		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
 		if(!isset($_GET['ajax']))
 			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));

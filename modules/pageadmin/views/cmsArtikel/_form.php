@@ -45,16 +45,41 @@
             <?php echo $form->error($model,'gambar_icon'); ?>
             </span>
         </div>
-        <div class="clear">&nbsp;</div>
+        <div style="width: 100%">
+            <label>&nbsp;</label>
+            <span class="field">
+            <div class="input-prepend span8">
+                <label class="checkbox" for="" style="text-align:left">
+                    <?php echo $form->checkBox($model,'is_komentar').' Bisa dikomentari'?>
+                </label>
+            </div>
+            </span>
+        </div>
+        <div class="clear">&nbsp;</div><br>
         <div style="width: 100%">
             <?php
                     //Example with model
-                    $this->widget('ext.editMe.widgets.ExtEditMe', array(
-                        'model'=>$model,
-                        'attribute'=>'isi',
-                        'filebrowserImageBrowseUrl'=>  Yii::app()->baseUrl."/upload"
-//                        'htmlOptions'=>array('class'=>'wpmore')
-                    ));
+//                    $this->widget('ext.editMe.widgets.ExtEditMe', array(
+//                        'model'=>$model,
+//                        'attribute'=>'isi',
+//                        'filebrowserImageBrowseUrl'=>  Yii::app()->baseUrl."/upload"
+////                        'htmlOptions'=>array('class'=>'wpmore')
+//                    ));
+            //tinymce
+            $this->widget('ext.tinymce.TinyMce', array(
+                'model' => $model,
+                'attribute' => 'isi',
+                'compressorRoute' => 'pageadmin/elfinder/compressor',
+                'spellcheckerUrl' => 'http://speller.yandex.net/services/tinyspell',
+                'fileManager' => array(
+                    'class' => 'ext.elFinder.TinyMceElFinder',
+                    'connectorRoute'=>'pageadmin/elfinder/connector',
+                ),
+                'htmlOptions' => array(
+                    'rows' => 12,
+                    'cols' => 60,
+                ),
+            ));
                     ?>
                     <?php echo $form->error($model,'isi'); ?>
         </div>
@@ -65,7 +90,7 @@
         <div class="break"></div>
         Kategori
         <div class="break"></div>
-        <?php 
+        <?php
         $kategoriArtikelList=$model->getKategoriList();
 
         foreach($kategoriList as $key=>$kategori){
@@ -82,18 +107,9 @@
         ?>
         <?php echo $form->error($model,'cmsKategoris'); ?>    
         <!--</p>-->    
-        
-        <div class="break"></div>    
-        <br><br><br>
-        <hr>
-        <div class="input-prepend span8">
-            <label class="checkbox" for="" style="text-align:left">
-                <?php echo $form->checkBox($model,'is_komentar').' Bisa dikomentari'?>
-            </label>
-        </div>
     </div>
 </div>
-<div class="modal-footer">
+<div class="modal-footer" style="">
     <?php
             $this->widget('bootstrap.widgets.TbButton', array(
                 'type' => 'primary',

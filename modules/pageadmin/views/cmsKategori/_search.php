@@ -6,7 +6,7 @@
 
 <?php $this->beginWidget('bootstrap.widgets.TbModal', array('id'=>'searchModal')); ?><div class="modal-header">
     <a class="close" data-dismiss="modal">&times;</a>
-    <h3>Advanced Search Cms Kategori</h3>
+    <h3>Advanced Search Kategori</h3>
 </div>
 
 <div class="modal-body">
