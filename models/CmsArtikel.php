@@ -313,4 +313,20 @@ class CmsArtikel extends MyCActiveRecord
     public function getUrl(){
         return Yii::app()->createUrl('blog/default/article',array('slug'=>$this->slug));
     }
+
+    public function getNewArtikel($limit=5)
+    {
+        $criteria=new CDbCriteria();
+        $criteria->limit=$limit;
+        $criteria->order="waktu desc";
+        return $this->findAll($criteria);
+    }
+
+    public function getArticleSnippet(){
+        $isi=explode('<!-- pagebreak -->',$this->isi);
+        if(isset($isi[0]))
+            return $isi[0];
+        else
+            return "";
+    }
 }
