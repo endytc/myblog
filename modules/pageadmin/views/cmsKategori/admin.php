@@ -3,7 +3,7 @@
 /* @var $model CmsKategori */
 
 $this->breadcrumbs=array(
-	'Cms Kategori'=>array('index'),
+	'Kategori'=>array('index'),
 	'Manage',
 );
 
@@ -14,7 +14,7 @@ $this->menu=array(
 
 ?>
 
-<h3>Manage Cms Kategori</h3>
+<h3>Manage Kategori</h3>
 <hr>
 <div class="row-fluid">
 <div class="span5" style="text-align: left">
@@ -22,7 +22,7 @@ $this->menu=array(
         
         <?php $this->widget('bootstrap.widgets.TbButton',array(
                 'icon'=>'plus white',
-                'label'=>'Tambah Cms Kategori',
+                'label'=>'Tambah Kategori',
                 'url'=>Yii::app()->createUrl($this->getModuleUrl().'/cmsKategori/create'),
                 'type'=>'primary',
                 'htmlOptions'=>array('target' => 'ajax-modal')

@@ -10,7 +10,7 @@
  *
  * @author fendi
  */
-class BlogController extends FrontendController{
+class BlogController extends MyController{
     
 }
 

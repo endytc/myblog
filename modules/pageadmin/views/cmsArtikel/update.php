@@ -3,7 +3,7 @@
 /* @var $model CmsArtikel */
 
 $this->breadcrumbs=array(
-	'Cms Artikels'=>array('index'),
+	'Artikels'=>array('index'),
 	$model->id=>array('view','id'=>$model->id),
 	'Update',
 );

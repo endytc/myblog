@@ -76,7 +76,7 @@ class CmsKategori extends MyCActiveRecord
                     ->from($this->tableName())
                     ->queryAll();
             if($nullVisible)
-                $data=array(''=>'- Pilih Cms Kategori -');
+                $data=array(''=>'- Pilih Kategori -');
             else
                 $data=array();
             foreach($results as $result){
